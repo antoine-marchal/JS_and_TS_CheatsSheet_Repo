@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Manipulation du DOM en JavaScript</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <style>
+    .rouge {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="titre">Titre principal</h1>
+  <p>Un paragraphe.</p>
+  <ul id="liste">
+    <li>Élément 1</li>
+    <li>Élément 2</li>
+    <li>Élément 3</li>
+  </ul>
+
+  <script>
+    // Récupération des éléments dans le DOM
+    let titre = document.getElementById('titre');
+    let paragraphe = document.querySelector('p');
+    let liste = document.getElementById('liste');
+
+    // Modification des éléments
+    titre.innerHTML = 'Nouveau titre'; // Modification du contenu HTML du titre
+    paragraphe.classList.add('rouge'); // Ajout d'une classe CSS au paragraphe
+
+    // Ajout d'un nouvel élément à la liste
+    let nouvelElement = document.createElement('li');
+    nouvelElement.innerHTML = 'Élément 4';
+    liste.appendChild(nouvelElement);
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // Code à exécuter une fois la page complètement chargée
+    });
+
+    window.addEventListener('load', function() {
+    // Code à exécuter une fois tous les éléments de la page chargés
+    });
+
+    $(document).ready(function() {
+        // Code à exécuter une fois la page complètement chargée
+        // Récupération des éléments dans le DOM avec jQuery
+        let titre = $('#titre');
+        let paragraphe = $('p');
+        let liste = $('#liste');
+
+        // Modification des éléments avec jQuery
+        titre.text('Nouveau titre'); // Modification du texte du titre
+        paragraphe.addClass('rouge'); // Ajout d'une classe CSS au paragraphe
+
+        // Ajout d'un nouvel élément à la liste avec jQuery
+        $('<li>').text('Élément 4').appendTo(liste);
+
+        // Ajout d'un écouteur d'événements avec jQuery
+        $('#bouton').click(function() {
+        alert('Le bouton a été cliqué.');
+        });
+    });
+
+  </script>
+</body>
+</html>

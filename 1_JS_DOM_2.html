@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemple de manipulation du DOM</title>
+</head>
+<body>
+
+  <h1>Exemple de manipulation du DOM</h1>
+
+  <p>Cliquez sur le bouton pour ajouter un nouveau paragraphe à la fin de la page :</p>
+
+  <button id="ajouter-paragraphe">Ajouter un paragraphe</button>
+
+  <div id="paragraphe-container"></div>
+
+  <script>
+    // Récupérer le bouton et le conteneur de paragraphe dans le DOM
+    const bouton = document.querySelector('#ajouter-paragraphe');
+    const container = document.querySelector('#paragraphe-container');
+
+    // Ajouter un écouteur d'événements au bouton
+    bouton.addEventListener('click', () => {
+      // Créer un nouveau paragraphe et le remplir de texte
+      const nouveauParagraphe = document.createElement('p');
+      nouveauParagraphe.textContent = 'Ceci est un nouveau paragraphe ajouté dynamiquement !';
+
+      // Ajouter une classe CSS au nouveau paragraphe
+      nouveauParagraphe.classList.add('nouveau-paragraphe');
+
+      // Ajouter un attribut data à l'élément
+      nouveauParagraphe.dataset.id = '1';
+
+      // Ajouter un événement à l'élément
+      nouveauParagraphe.addEventListener('mouseover', () => {
+        console.log('Le paragraphe a été survolé !');
+      });
+
+      // Insérer le nouveau paragraphe avant le premier paragraphe existant dans le conteneur
+      const premierParagraphe = container.querySelector('p');
+      container.insertBefore(nouveauParagraphe, premierParagraphe);
+
+      // Récupérer la liste des enfants du conteneur et la transformer en tableau
+      const enfants = Array.from(container.children);
+
+      // Filtrer les éléments du tableau pour ne garder que les paragraphes
+      const paragraphes = enfants.filter(enfant => enfant.tagName === 'P');
+
+      // Itérer sur les paragraphes et ajouter une classe CSS à chaque élément
+      paragraphes.forEach(paragraphe => {
+        paragraphe.classList.add('paragraphe');
+      });
+
+      // Récupérer la liste des classes CSS de l'élément
+      const classes = nouveauParagraphe.classList;
+
+      // Vérifier si l'élément a une classe CSS spécifique
+      if (classes.contains('nouveau-paragraphe')) {
+        console.log('Le paragraphe est nouveau !');
+      }
+    });
+  </script>
+
+  <style>
+    .nouveau-paragraphe {
+      background-color: #f2f2f2;
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    .paragraphe {
+      margin: 10px 0;
+    }
+  </style>
+
+</body>
+</html>
