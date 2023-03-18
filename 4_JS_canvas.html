@@ -1,0 +1,88 @@
+
+<!-- 
+    Voici une liste des fonctionnalités courantes du Canvas utilisées dans cet exemple :
+
+    fillRect(x, y, width, height): dessine un rectangle rempli aux coordonnées x, y avec la largeur et la hauteur spécifiées.
+    fillStyle: définit la couleur de remplissage pour les formes géométriques.
+    beginPath(): commence un nouveau chemin ou une nouvelle forme géométrique.
+    arc(x, y, radius, startAngle, endAngle): dessine un cercle avec le centre aux coordonnées x, y, le rayon spécifié et un arc allant de startAngle à endAngle.
+    fill(): remplit le chemin actuel 
+-->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas Example</title>
+    <style>
+      canvas {
+        border: 1px solid #000000;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <script>
+      // Récupération de l'élément canvas et du contexte de rendu 2D
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
+
+      // Dessin d'un rectangle rempli
+      context.fillStyle = 'red';
+      context.fillRect(50, 50, 100, 100);
+
+      // Dessin d'un cercle rempli
+      context.fillStyle = 'green';
+      context.beginPath();
+      context.arc(200, 200, 50, 0, Math.PI * 2);
+      context.fill();
+
+      // Dessin d'une ligne
+      context.strokeStyle = 'blue';
+      context.lineWidth = 5;
+      context.beginPath();
+      context.moveTo(50, 300);
+      context.lineTo(350, 300);
+      context.stroke();
+
+      // Chargement d'une image à partir d'une URL
+      const image = new Image();
+      image.onload = () => {
+        // Affichage de l'image sur le canvas
+        context.drawImage(image, 0, 0);
+      };
+      image.src = 'https://via.placeholder.com/400x400';
+
+      // Ajout d'un écouteur d'événement pour le clic sur le canvas
+      canvas.addEventListener('click', event => {
+        // Récupération des coordonnées du clic
+        const x = event.clientX - canvas.offsetLeft;
+        const y = event.clientY - canvas.offsetTop;
+
+        // Dessin d'un cercle autour du point de clic
+        context.fillStyle = 'yellow';
+        context.beginPath();
+        context.arc(x, y, 10, 0, Math.PI * 2);
+        context.fill();
+      });
+    </script>
+  </body>
+</html>
+
+<!-- 
+    Autres exmples :
+    strokeRect(x, y, width, height): dessine un rectangle avec une bordure aux coordonnées x, y avec la largeur et la hauteur spécifiées.
+    strokeStyle: définit la couleur de la bordure pour les formes géométriques.
+    lineWidth: définit l'épaisseur de la ligne pour les formes géométriques.
+    moveTo(x, y): définit le point de départ d'une ligne pour lineTo().
+    lineTo(x, y): dessine une ligne du dernier point à celui spécifié aux coordonnées x, y.
+    clearRect(x, y, width, height): efface un rectangle aux coordonnées x, y avec la largeur et la hauteur spécifiées.
+    drawImage(image, x, y): affiche l'image spécifiée aux coordonnées x, y.
+    measureText(text): retourne un objet avec des informations sur la taille d'un texte dessiné avec la police de caractères actuelle.
+    font: définit la police de caractères pour le texte dessiné.
+    fillText(text, x, y): dessine un texte rempli aux coordonnées x, y.
+    strokeText(text, x, y): dessine un texte avec une bordure aux coordonnées x, y.
+    save(): sauvegarde l'état du contexte de rendu.
+    restore(): restaure l'état précédemment sauvegardé du contexte de rendu.
+ -->
